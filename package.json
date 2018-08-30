@@ -1,0 +1,27 @@
+{
+  "name": "mini-games",
+  "version": "0.0.1",
+  "description": "Small games implementation in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikarm22/mini-games.git"
+  },
+  "author": "Armen Nikoyan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nikarm22/mini-games/issues"
+  },
+  "homepage": "https://github.com/nikarm22/mini-games#readme",
+  "devDependencies": {
+    "@types/node": "^10.9.3",
+    "copy-webpack-plugin": "^4.5.2",
+    "ts-loader": "^4.5.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

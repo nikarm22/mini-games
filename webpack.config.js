@@ -23,7 +23,7 @@ module.exports = env => ({
   },
   plugins: [
     new CopyWebpackPlugin([
-      { from: 'src/shared/gamePage.html', to: `./${env.game}/index.html` },
+      { from: 'src/shared/templates/gamePage.html', to: `./${env.game}/index.html` },
     ]),
   ]
 });

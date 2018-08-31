@@ -1,4 +1,4 @@
-# Canvas Mini Games
+# TypeScript Mini Games
 Small games implementation in TypeScript
 
 ## Development

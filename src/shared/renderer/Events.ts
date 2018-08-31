@@ -19,21 +19,32 @@ export enum KeyboardEventTypes {
 
 export interface AbstractEvent {
   type: EventTypes,
-  subType: string,
-  payload: any,
+  subType: any, // defined in subClasses
+  payload: object, // defined in subClasses
 }
 
-export class AbstractMouseEvent extends AbstractEvent {
+export class MouseEvent implements AbstractEvent {
+  type: EventTypes;
+  subType: MouseEventTypes;
+  payload: {
+    x: number,
+    y: number,
+  };
+
   constructor (subType: MouseEventTypes, x: number, y: number) {
-    this.type = MOUSE;
+    this.type = EventTypes.MOUSE;
     this.subType = subType;
     this.payload = { x, y };
   }
 }
 
-export class AbstractKeyboardEvent extends AbstractEvent {
+export class KeyboardEvent implements AbstractEvent {
+  type: EventTypes;
+  subType: KeyboardEventTypes;
+  payload: { key: string };
+
   constructor (subType: KeyboardEventTypes, key: string) {
-    this.type = KEYBOARD;
+    this.type = EventTypes.KEYBOARD;
     this.subType = subType;
     this.payload = { key };
   }

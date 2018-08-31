@@ -5,6 +5,11 @@ import IObservable from '../../../utils/Observable/index.d';
 // Classes
 import Observable from '../../../utils/Observable/index';
 
+export type IEventConfig = {
+  name: string,
+  target: boolean | any,
+};
+
 export default class CanvasRenderer implements AbstractRednerer {
 
   private width: number;
@@ -14,9 +19,12 @@ export default class CanvasRenderer implements AbstractRednerer {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
 
-  public uiEvent: IObservable<any>; // TODO :: Change any to AbstractEvent type
+  public uiEvent: IObservable<any>;
 
-  constructor(parentDomNode: HTMLElement) {
+  constructor(
+    parentDomNode: HTMLElement,
+    uiEventsConfig: IEventConfig[] = [],
+  ) {
     this.parentNode = parentDomNode;
     this.width = parentDomNode.clientWidth;
     this.height = parentDomNode.clientHeight;
@@ -26,7 +34,21 @@ export default class CanvasRenderer implements AbstractRednerer {
     this.parentNode.appendChild(this.canvas);
     this.context = this.canvas.getContext('2d');
     this.uiEvent = new Observable();
+
+    this.attachEvents(uiEventsConfig);
   }
+
+  private attachEvents(uiEventsConfig: IEventConfig[]): void {
+    uiEventsConfig.forEach(({ name, target }) => {
+      target
+        ? target.addEventListener(name, this.handleNativeEvents)
+        : this.canvas.addEventListener(name, this.handleNativeEvents);
+    });
+  }
+
+  private handleNativeEvents: (e: Event) => void = e => {
+    this.uiEvent.emit(e);
+  };
 
   public clear(color = '#ffffff') {
     this.context.fillStyle = color;

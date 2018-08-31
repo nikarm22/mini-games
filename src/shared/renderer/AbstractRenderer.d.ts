@@ -1,3 +1,4 @@
+// Types
 import IObservable from '../../utils/Observable/index.d';
 
 export interface Point {
@@ -10,5 +11,5 @@ export default interface AbstractRenderer {
   drawPolygon: (color: string, verticles: Point[]) => void,
   drawRectangle: (color: string, x: number, y: number, width: number, height: number) => void,
   drawImage: (image: ImageBitmap | HTMLImageElement, x: number, y: number, width: number, height: number) => void,
-  uiEvent: IObservable<any>, // TODO :: Change any to AbstractEvent type 
+  uiEvent: IObservable<any>,
 }

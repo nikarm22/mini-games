@@ -76,6 +76,17 @@ export default class CanvasRenderer implements AbstractRednerer {
     context.fillRect(x, y, width, height);
   }
 
+  public drawCircle(color: string, x: number, y: number, radius: number) {
+    const { context } = this;
+
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(x, y, radius, 0, 2 * Math.PI);
+    context.closePath();
+    context.fill();
+
+  }
+
   public drawImage(image: ImageBitmap | HTMLImageElement, x: number, y: number, width: number, height: number) {
     const { context } = this;
 

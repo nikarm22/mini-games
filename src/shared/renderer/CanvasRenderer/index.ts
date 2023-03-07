@@ -1,16 +1,15 @@
 // Types
-import AbstractRednerer, { Point, Shape, Options } from '../AbstractRenderer';
-import IObservable from '../../../utils/Observable/index.d';
+import { AbstractRenderer, Point, Shape, Options, Size } from '../AbstractRenderer';
 
 // Classes
 import Observable from '../../../utils/Observable/index';
 
 export type IEventConfig = {
   name: string,
-  target: boolean | any,
+  target?: boolean | any,
 };
 
-export default class CanvasRenderer implements AbstractRednerer {
+export class CanvasRenderer extends AbstractRenderer {
 
   private width: number;
   private height: number;
@@ -19,12 +18,14 @@ export default class CanvasRenderer implements AbstractRednerer {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
 
-  public uiEvent: IObservable<any>;
+  public uiEvent: Observable<any>;
 
   constructor(
     parentDomNode: HTMLElement,
     uiEventsConfig: IEventConfig[] = [],
   ) {
+    super();
+  
     this.parentNode = parentDomNode;
     this.width = parentDomNode.clientWidth;
     this.height = parentDomNode.clientHeight;
@@ -54,6 +55,20 @@ export default class CanvasRenderer implements AbstractRednerer {
   };
 
   // Public interface
+  public getSize(): Size {
+    return {
+      width: this.width,
+      height: this.height,
+    };
+  }
+
+  public resize(): void {
+    this.width = this.parentNode.clientWidth;
+    this.height = this.parentNode.clientHeight;
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+  }
+
   public clear({ color }: Options = { color: '#ffffff' }) {
     this.context.fillStyle = color;
     this.context.fillRect(0, 0, this.width, this.height);

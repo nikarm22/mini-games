@@ -1,10 +1,7 @@
-// Types
-import IObservable from './index.d';
-
 // Utils
 import { uniqueIdGenerator } from '../../utils/index';
 
-export default class Observable<T> implements IObservable<T> {
+export default class Observable<T> {
   private observers: { [key: string]: (data: T) => void } = {};
 
   public emit(data: T) {

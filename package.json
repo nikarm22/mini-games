@@ -21,7 +21,9 @@
   "homepage": "https://github.com/nikarm22/mini-games#readme",
   "devDependencies": {
     "@types/node": "^10.9.3",
+    "concurrently": "^7.6.0",
     "copy-webpack-plugin": "^4.5.2",
+    "serve": "^14.2.0",
     "ts-loader": "^4.5.0",
     "typescript": "^3.0.3",
     "webpack": "^4.17.1",
